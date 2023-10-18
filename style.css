@@ -1,0 +1,30 @@
+button {
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    color:white;
+    background-color:indigo;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap;
+    transition-duration: 0.4s;}
+
+button:hover {color:#000!important;background-color:#ccc!important}
+
+:root[data-theme="light"] {
+    --text: #040103;
+    --background: #f9ecf2;
+    --primary: #2c8759;
+    --secondary: #f3d8e6;
+    --accent: #3ec180;
+  }
+  :root[data-theme="dark"] {
+    --text: #fefbfd;
+    --background: #13060c;
+    --primary: #78d3a6;
+    --secondary: #270c1a;
+    --accent: #3ec180;
+  }
