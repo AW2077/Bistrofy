@@ -5,8 +5,8 @@ button {
     vertical-align:middle;
     overflow:hidden;
     text-decoration:none;
-    color:white;
-    background-color:indigo;
+    color: var(--text);
+    background-color: var(--primary);
     text-align:center;
     cursor:pointer;
     white-space:nowrap;
@@ -14,14 +14,27 @@ button {
 
 button:hover {color:#000!important;background-color:#ccc!important}
 
-:root[data-theme="light"] {
+body {
+    background-color: var(--background);
+}
+
+:root {
+    --text: #040103;
+    --background: #f9ecf2;
+    --primary: #2c8759;
+    --secondary: #f3d8e6;
+    --accent: #3ec180;
+}
+
+html[data-theme="light"] {
     --text: #040103;
     --background: #f9ecf2;
     --primary: #2c8759;
     --secondary: #f3d8e6;
     --accent: #3ec180;
   }
-  :root[data-theme="dark"] {
+
+html[data-theme="dark"] {
     --text: #fefbfd;
     --background: #13060c;
     --primary: #78d3a6;
