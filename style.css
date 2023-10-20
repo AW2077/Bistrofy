@@ -1,3 +1,49 @@
+/* CSS reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
 button {
     border:none;
     display:inline-block;
@@ -12,32 +58,73 @@ button {
     white-space:nowrap;
     transition-duration: 0.4s;}
 
-button:hover {color:#000!important;background-color:#ccc!important}
+button:hover {color:var(--text)!important;background-color:var(--secondary)!important}
 
 body {
     background-color: var(--background);
+    color: var(--text);
+    font-family: 'Lato';
+    font-weight: 400;
+}
+
+header {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 30px;
+}
+
+.search {
+    text-align: center;
+    padding: 20px;
 }
 
 :root {
-    --text: #040103;
-    --background: #f9ecf2;
-    --primary: #2c8759;
-    --secondary: #f3d8e6;
-    --accent: #3ec180;
+    --text: #000000;
+    --background: #f7f0e4;
+    --primary: #f07305;
+    --secondary: #fec995;
+    --accent: #c31404;
 }
 
 html[data-theme="light"] {
-    --text: #040103;
-    --background: #f9ecf2;
-    --primary: #2c8759;
-    --secondary: #f3d8e6;
-    --accent: #3ec180;
+    --text: #000000;
+    --background: #f7f0e4;
+    --primary: #f07305;
+    --secondary: #fec995;
+    --accent: #c31404;
   }
 
 html[data-theme="dark"] {
-    --text: #fefbfd;
-    --background: #13060c;
-    --primary: #78d3a6;
-    --secondary: #270c1a;
-    --accent: #3ec180;
+    --text: #ffffff;
+    --background: #121212;
+    --primary: #fa7d0f;
+    --secondary: #6a3601;
+    --accent: #fb4c3c;
   }
+
+h1 {
+  font-family: 'Syncopate';
+  font-weight: 700;
+  color: var(--text)
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Lato';
+    font-weight: 700;
+    color: var(--text)
+  }
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 4.210rem; /* 67.36px */}
+
+h2 {font-size: 3.158rem; /* 50.56px */}
+
+h3 {font-size: 2.369rem; /* 37.92px */}
+
+h4 {font-size: 1.777rem; /* 28.48px */}
+
+h5 {font-size: 1.333rem; /* 21.28px */}
+
+small {font-size: 0.750rem; /* 12px */}
+
