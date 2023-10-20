@@ -78,6 +78,16 @@ header {
     padding: 20px;
 }
 
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: var(--text);
+    background-color: var(--secondary);
+    text-align: center;
+ }
+
 :root {
     --text: #000000;
     --background: #f7f0e4;
@@ -98,7 +108,7 @@ html[data-theme="dark"] {
     --text: #ffffff;
     --background: #121212;
     --primary: #fa7d0f;
-    --secondary: #6a3601;
+    --secondary: #b35900;
     --accent: #fb4c3c;
   }
 
@@ -127,4 +137,12 @@ h4 {font-size: 1.777rem; /* 28.48px */}
 h5 {font-size: 1.333rem; /* 21.28px */}
 
 small {font-size: 0.750rem; /* 12px */}
+
+::-ms-input-placeholder { /* Edge 12-18 */
+    font-size: 16px;
+  }
+  
+::placeholder {
+    font-size: 16px;
+  }
 
