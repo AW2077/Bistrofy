@@ -78,6 +78,13 @@ header {
     padding: 20px;
 }
 
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+
 footer {
     position: fixed;
     left: 0;
