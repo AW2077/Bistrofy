@@ -1,0 +1,19 @@
+.search {
+    text-align: center;
+    padding: 20px;
+}
+
+.search form {
+    text-align: center;
+}
+
+.search input{
+    height: 38px;
+    width: 35%;
+    border-radius: 25px;
+    padding-left: 16px;
+    font-size: 16px;
+    background-image: url('./near.png');
+    background-position:98%;
+    background-repeat: no-repeat
+}
