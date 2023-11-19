@@ -8,19 +8,17 @@ import Contact from './Contact';
 
 const NavigationBar = ({ updateContent }) => {
   return (
-    <nav>
-      <header>
-        <div class="header">
-          <a onClick={() => updateContent(<SearchBar/>)}  class="logo"><img id='pizza-icon' src="pizza.png" alt='company logo'></img>Pizzapol</a>
-          <div class="header-right">
-            <a onClick={() => updateContent(<Menu/>)}>Menu</a>
-            <a onClick={() => updateContent(<TrackOrder/>)}>Track your order</a>
-            <a onClick={() => updateContent(<Contact/>)}>Contact</a>
-            <a onClick={() => updateContent(<Basket/>)}><img id='basket-icon' src="basket.png" alt='basket icon'></img></a>
+    <div class>
+        <ul>
+          <li class="logo"><a id="logo" onClick={() => updateContent(<SearchBar/>)}><img id='pizza-icon' src="pizza.png" alt='company logo'></img>Pizzapol</a></li>
+            <div class="header-right">
+            <li><a onClick={() => updateContent(<Menu/>)}>Menu</a></li>
+            <li><a onClick={() => updateContent(<TrackOrder/>)}>Track your order</a></li>
+            <li><a onClick={() => updateContent(<Contact/>)}>Contact</a></li>
+            <li><a onClick={() => updateContent(<Basket/>)}><img id='basket-icon' src="basket.png" alt='basket icon'></img></a></li>
           </div>
-        </div>   
-      </header>
-    </nav>
+        </ul>
+      </div> 
   );
 };
 
