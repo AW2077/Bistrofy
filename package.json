@@ -7,7 +7,6 @@
     "react-dom": "^18.2.0",
     "react-scripts": "0.9.5"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "set PORT=7200 && react-scripts start",
     "build": "react-scripts build",
