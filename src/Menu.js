@@ -3,12 +3,7 @@ import './Menu.css'
 
 const Menu = () => {
   const [basket, setBasket] = useState([]);
-  const [pizzaMenu, setPizzaMenu] = useState([]);
-  // const pizzaMenu = [
-  //   {id: 1, name: 'Margherita'},
-  //   {id: 2, name: 'Pepperoni'}
-  // ];
-
+  const [idNameMap, setIdNameMap] = useState([]);
   
   const getMenuData = () =>{
     const xhr = new XMLHttpRequest();
@@ -25,9 +20,11 @@ const Menu = () => {
           var jsonResponse = JSON.parse(xhr.responseText);
           jsonResponse.forEach(element => {
             fetchedPizzaMenu.push({id:element.id, name:element.name});
-            console.log(element.name, " ", element.id);
           });
-          setPizzaMenu(fetchedPizzaMenu);
+          window.setIdNameMap(fetchedPizzaMenu);
+
+          setIdNameMap(fetchedPizzaMenu);
+          
 
         } else {
           console.error("Error: "+xhr.status);
@@ -38,6 +35,72 @@ const Menu = () => {
     
   }
   
+  const addToBasket = (pizza =>{
+
+    let basket = JSON.parse(localStorage.getItem('basket'));
+    
+    if(basket){
+      for(let i=0; i<basket.length; i++){
+        if(basket[i].id == pizza.id){
+          var quantity = basket[i].quantity;
+          basket.splice(i,1);
+          basket.push({
+            id: pizza.id,
+            name: pizza.name,
+            quantity: quantity+1
+          });
+          localStorage.setItem('basket', JSON.stringify(basket));
+          return;
+        }
+      }
+      basket.push({
+        id: pizza.id,
+        name: pizza.name,
+        quantity: 1
+      });
+      localStorage.setItem('basket', JSON.stringify(basket));
+
+    } else {
+      basket = [];
+      basket.push({
+        id: pizza.id,
+        name: pizza.name,
+        quantity: 1
+      });
+      localStorage.setItem('basket', JSON.stringify(basket));
+    }
+})
+
+
+  const removeFromBasket = (pizza =>{
+
+    let basket = JSON.parse(localStorage.getItem('basket'));
+
+    if(basket){
+      for(let i=0; i<basket.length; i++){
+        if(basket[i].id == pizza.id){
+          var quantity = basket[i].quantity;
+          if(quantity == 1){
+            basket.splice(i, 1);
+            localStorage.setItem('basket', JSON.stringify(basket));
+            return;
+          }
+          basket.splice(i, 1);
+          basket.push({
+            id: pizza.id,
+            name: pizza.name,
+            quantity: quantity -1
+          });
+          localStorage.setItem('basket', JSON.stringify(basket));
+          return;
+        }
+      }
+    }
+
+
+
+  })
+
   useEffect(() =>{
     const storedBasket = JSON.parse(localStorage.getItem('basket'));
     if(storedBasket){
@@ -46,24 +109,17 @@ const Menu = () => {
 
     getMenuData();
   }, []);
-  
-  
-  const addToBasket = (pizza) => {
-    
-    const updateBasket = [...basket, pizza];
-    setBasket(updateBasket);
-    localStorage.setItem('basket', JSON.stringify(updateBasket));
-  };
 
   return(
     <div>
       <h1>Menu</h1>
       <ul>
-        {pizzaMenu.map((pizza) => (
-          <li key={pizza.id} onClick={() => addToBasket(pizza)}>
-            {pizza.name}
+        {idNameMap.map((pizza) => (
+          <li>
+            {pizza.name} <button onClick={() => addToBasket(pizza)}>+</button><button onClick={() => removeFromBasket(pizza)}>-</button>
           </li>
         ))}
+        
       </ul>
     </div>
   );

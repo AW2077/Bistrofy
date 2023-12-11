@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import SearchBar from './SearchBar';
 import NavigationBar from './NavigationBar';
+import { DataProvider } from './DataProvider';
 
 const App = () =>{
   const [content, setContent] = useState(<SearchBar/>);
@@ -11,10 +12,10 @@ const App = () =>{
   };
 
   return(
-    <div>
+    <DataProvider>
       <NavigationBar updateContent={updateContent}/>
       <div>{content}</div>
-    </div>
+    </DataProvider>
   );
   
   
