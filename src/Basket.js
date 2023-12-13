@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import pizzaMenu from "./Menu"
 
 const Basket = () =>{
     const [basketData, setBasketData] = useState([]);
@@ -7,11 +6,11 @@ const Basket = () =>{
     const placeOrder = () =>{
 
         const basketContent = JSON.parse(localStorage.getItem('basket'));
-        if(basketContent.length == 0){
+        if(basketContent.length === 0){
             alert('Your basket is empty!');
             return;
         }
-        console.log(basketContent == true);
+        console.log(basketContent === true);
 
         const xhr = new XMLHttpRequest();
         xhr.open("POST", " https://placeorder-ovvvjoo5mq-uc.a.run.app");
@@ -49,7 +48,7 @@ const Basket = () =>{
         );
     }
 
-    if(basketData.length == 0){
+    if(basketData.length === 0){
         return(
             <div>
             <h2>Your Basket</h2>

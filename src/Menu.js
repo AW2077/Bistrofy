@@ -41,7 +41,7 @@ const Menu = () => {
     
     if(basket){
       for(let i=0; i<basket.length; i++){
-        if(basket[i].id == pizza.id){
+        if(basket[i].id === pizza.id){
           var quantity = basket[i].quantity;
           basket.splice(i,1);
           basket.push({
@@ -78,9 +78,9 @@ const Menu = () => {
 
     if(basket){
       for(let i=0; i<basket.length; i++){
-        if(basket[i].id == pizza.id){
+        if(basket[i].id === pizza.id){
           var quantity = basket[i].quantity;
-          if(quantity == 1){
+          if(quantity === 1){
             basket.splice(i, 1);
             localStorage.setItem('basket', JSON.stringify(basket));
             return;
