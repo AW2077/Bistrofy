@@ -9,4 +9,3 @@ const Sauces = () =>{
 };
 
 export default Sauces;
-
