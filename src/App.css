@@ -1,5 +1,11 @@
-h3 {
-    font-size: 2.369rem; /* 37.92px */
+@media (min-width: 1260px) {
+  .mainContent {
+    max-width: 1200px;
+  }
 }
 
-h4 {font-size: 1.777rem; /* 28.48px */}
+@media (min-width: 480px) {
+    .container {
+      max-width: 600px;
+    }
+  }

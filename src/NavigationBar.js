@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavigationBar.css';
-import Menu from './Menu';
+import Menu from './menu/Menu';
 import SearchBar from './SearchBar';
 import Basket from './Basket';
 import TrackOrder from './TrackOrder';

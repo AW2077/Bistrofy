@@ -6,7 +6,6 @@ import { DataProvider } from './DataProvider';
 
 const App = () =>{
   const [content, setContent] = useState(<SearchBar/>);
-
   const updateContent = (newContent) =>{
     setContent(newContent);
   };
@@ -14,7 +13,9 @@ const App = () =>{
   return(
     <DataProvider>
       <NavigationBar updateContent={updateContent}/>
-      <div>{content}</div>
+      <main>
+        <div>{content}</div>
+      </main>
     </DataProvider>
   );
   

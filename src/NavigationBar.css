@@ -18,7 +18,6 @@ ul {
     padding: 10px 30px 25px 20px ; /*top right bottom left*/
     overflow: hidden;
     background-color: var(--primary);
-    border-radius: 30px;
   }
   
 .logo {
