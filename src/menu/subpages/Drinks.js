@@ -2,7 +2,7 @@ import React from 'react';
 
 const Drinks = () =>{
   return(
-    <div class="flex-container">
+    <div>
       <p>driny</p>
     </div>
   );

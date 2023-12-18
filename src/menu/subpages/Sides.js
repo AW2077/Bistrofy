@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sides = () =>{
   return(
-    <div class="flex-container">
+    <div>
       <p>przystawki</p>
     </div>
   );

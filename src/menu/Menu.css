@@ -1,33 +1,11 @@
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-.flex-container > button {
-    background-color: var(--accent);
-    color: white;
-    width: 20%;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px;
-  }
-
-.bg li {
+.menuBar >  ul > li {
   display: inline-block;
   list-style: none;
 }
 
-.bg a {
-  display: block;
+.menuBar > ul {
   margin: 0;
-}
-
-.bg ul {
-  margin: 0;
-  padding: 0px;
+  padding: 0;
   text-align: center;
   background-color: var(--navbar);
   display: flex; /* Use flexbox */
@@ -35,12 +13,35 @@
   align-items: center;
 }
 
-.bg center {
-  align-self: center;
+.menuBar >  ul > li > a {
+  display: block;
+  text-align: center;
+  padding: 10px 12px 10px 12px;
+  text-decoration: none;
+  font-size: 24px;
+  white-space:nowrap;
 }
 
 .bg {
   max-width: 100%;
   margin: 0;
   background-color: var(--navbar);
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.item {
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 10px;
+  margin: 5px;
+  width: 520px;
+  height: 520px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.itemContainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 }

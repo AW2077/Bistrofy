@@ -8,10 +8,10 @@ import Contact from './Contact';
 
 const NavigationBar = ({ updateContent }) => {
   return (
-    <div class>
+    <div className="navbar">
         <ul>
-          <li class="logo"><a id="logo" onClick={() => updateContent(<SearchBar/>)}><img id='pizza-icon' src="pizza.png" alt='company logo'></img>Pizzapol</a></li>
-            <div class="header-right">
+          <li className="logo"><a id="logo" onClick={() => updateContent(<SearchBar/>)}><img id='pizza-icon' src="pizza.png" alt='company logo'></img>Pizzapol</a></li>
+            <div className="header-right">
             <li><a onClick={() => updateContent(<Menu/>)}>Menu</a></li>
             <li><a onClick={() => updateContent(<TrackOrder/>)}>Track your order</a></li>
             <li><a onClick={() => updateContent(<Contact/>)}>Contact</a></li>

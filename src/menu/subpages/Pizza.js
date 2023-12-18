@@ -109,18 +109,17 @@ useEffect(() =>{
   getMenuData();
 }, []);
  
-    return(
-      <div>
-        <div>
-        <ul>
+return(
+  <div>
+    <ul>
           {idNameMap.map((pizza) => (
-            <li>
+            <li key={pizza.id}>
               {pizza.name} <button onClick={() => addToBasket(pizza)}>+</button><button onClick={() => removeFromBasket(pizza)}>-</button>
             </li>
           ))}
-        </ul>
-        </div>
-      </div>
-    );
-          };
+    </ul>
+  </div>
+  );
+};
+
 export default Pizza;

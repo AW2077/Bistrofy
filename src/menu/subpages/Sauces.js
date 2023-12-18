@@ -2,7 +2,11 @@ import React from 'react';
 
 const Sauces = () =>{
   return(
-    <div class="flex-container">
+    <div className="itemContainer">
+      <div className="item">item</div>
+      <div className="item">item</div>
+      <div className="item">item</div>
+      <div className="item">item</div>
       <p>sosy</p>
     </div>
   );

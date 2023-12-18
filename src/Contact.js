@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () =>{
   return(
-    <div class="flex-container">
+    <div>
       <p>Contact us!</p>
     </div>
   );

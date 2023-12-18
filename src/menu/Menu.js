@@ -11,10 +11,7 @@ const Menu = () => {
   return(
     <div>
       <NaviBarMenu updateContent={updateContent}/>
-      <main>
-        <div class='mainContent'>{content}</div>
-      </main>
-      
+      <div className='mainContent'>{content}</div>
     </div>
     );
   
