@@ -1,18 +1,35 @@
-import React,{ createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-export const DataContext = createContext();
+const DataContext = createContext();
 
-export const DataProvider = ({ children }) => {
-    
-    const [idNameMap, setIdNameMap] = useState("initialValue");
-    const contextValue = { idNameMap, setIdNameMap }
+const DataProvider = ({ children }) => {
+    const [menuData, setMenuData] = useState({
+        pizza: [],
+        drinks: [],
+        sides: [],
+        sauces: []
+    });
 
-    window.setIdNameMap = setIdNameMap;
-    window.idNameMap = idNameMap;
+    const fetchData = async () => {
+        try {
+            const menuResponse = await fetch('https://getmenu-ovvvjoo5mq-uc.a.run.app');
+            const menuData = await menuResponse.json();
+
+            setMenuData(menuData);
+        } catch (error) {
+            console.error('Error fetching menu data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return(
-        <DataContext.Provider value={{contextValue}}>
+        <DataContext.Provider value={{menuData}}>
             {children}
         </DataContext.Provider>
     );
 } 
+
+export { DataProvider, DataContext};

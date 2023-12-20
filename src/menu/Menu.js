@@ -1,19 +1,22 @@
-import React, {useState} from 'react';
-import './Menu.css'
+import React, { useState } from 'react';
 import NaviBarMenu from './NavBarMenu';
-import Pizza from './subpages/Pizza';
+import MenuItem from './MenuItem';
 
 const Menu = () => {
-  const [content, setContent] = useState(<Pizza/>)
-  const updateContent = (newContent) =>{
-    setContent(newContent); }
+  const [category, setCategory] = useState('pizza');
 
-  return(
-    <div>
-      <NaviBarMenu updateContent={updateContent}/>
-      <div className='mainContent'>{content}</div>
-    </div>
-    );
-  
+  const updateContent = (newCategory) => {
+    setCategory(newCategory);
   };
+
+  return (
+      <div>
+        <NaviBarMenu updateContent={updateContent} />
+        <div className='mainContent'>
+          <MenuItem category={category} />
+        </div>
+      </div>
+  );
+};
+
 export default Menu;

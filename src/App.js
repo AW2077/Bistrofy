@@ -11,7 +11,7 @@ const App = () =>{
   return(
     <DataProvider>
       <NavigationBar updateContent={updateContent}/>
-      <main>
+      <main className='mainContent'>
         {content}
       </main>
       <footer>
@@ -23,5 +23,3 @@ const App = () =>{
 };
 
 export default App;
-
-
