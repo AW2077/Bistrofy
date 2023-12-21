@@ -9,16 +9,32 @@ const MenuItem = ({category}) => {
   const { addToBasket, removeFromBasket } = useBasket();
 
   return (
-    <div>
-      <ul>
+    <div className='itemContainer'>
       {filteredData && filteredData.map((item) => (
-          <li key={item.id}>
-            {item.name}{' '}
-            <button onClick={() => addToBasket(item)}>+</button>
-            <button onClick={() => removeFromBasket(item)}>-</button>
-          </li>
+          <div className='item' key={item.id}>
+            <div className='imageWrapper'>
+            <img
+              src={item.img}
+              alt={item.name}
+              loading="lazy"
+              className='itemImage'
+            />
+            </div>
+            <div className='contentWrapper'>
+              <div className='itemHead'>
+                <div className='itemName'>{item.name}</div>
+                <span>22zł</span>
+                </div>
+              <div className='itemInfo'>lormem ipsum cven ofhni oeOInE cio </div>
+              <div className='itemButton'>
+                <button className={'btnYes ripple'} onClick={() => addToBasket(item)}>
+                  <span class="material-symbols-outlined">add</span></button>
+                <button className={'btnNo ripple'} onClick={() => removeFromBasket(item)}>
+                  <span class="material-symbols-outlined">remove</span></button>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
     </div>
   );
 };

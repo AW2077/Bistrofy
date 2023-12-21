@@ -38,11 +38,99 @@
   flex-grow: 0;
   flex-shrink: 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+  background-image: linear-gradient(to bottom, #fefefd 0px, #f6f1eb 24.3rem, #f1eae2 24.3rem, #f1eae2 24.5rem, #fff 24.5rem);
 }
 
 .itemContainer {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: center
+  justify-content: center;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.contentWrapper {
+  position: absolute;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+}
+
+.itemName {
+  text-transform: uppercase;
+  margin-right: 8px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.itemHead {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  padding: 8px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  justify-content: center;
+}
+
+.itemInfo {
+  font-weight: 500;
+}
+
+.itemButton {
+  position: absolute;
+  height: 40%;
+  bottom: 0;
+}
+
+.btnYes {
+  color: var(--clr-Success-a0);
+  border-color: var(--clr-Success-a0);
+}
+
+.btnNo {
+  color: var(--clr-Danger-a0);
+  border-color: var(--clr-Danger-a0);
+}
+
+.btnNo, .btnYes {
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  vertical-align: middle;
+  border-style: solid;
+  background-color: transparent;
+  border-radius: .8rem;
+  padding: 10px 16px 8px 16px;
+  margin: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple effect */
+.ripple {
+  background-position: center;
+  transition: background 0.4s;
+}
+.ripple:hover {
+  background: #f1f1f1 radial-gradient(circle, transparent 1%, #f1f1f1 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #dfe5cc;
+  background-size: 100%;
+  transition: background 0s;
 }
