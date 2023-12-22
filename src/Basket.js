@@ -12,6 +12,12 @@ const Basket = () =>{
         }
         console.log(basketContent === true);
 
+        const order = {
+            content: basketContent,
+            address: "Grójecka 420",
+            district: "Ochota"
+        }
+
         const xhr = new XMLHttpRequest();
         xhr.open("POST", " https://placeorder-ovvvjoo5mq-uc.a.run.app");
         xhr.setRequestHeader("Access-Control-Allow-Origin", "https://placeorder-ovvvjoo5mq-uc.a.run.app/");
@@ -23,10 +29,10 @@ const Basket = () =>{
             if (xhr.readyState === 4 && xhr.status === 201) {
                 console.log(JSON.parse(xhr.responseText));
             } else {
-                console.log(`Error: ${xhr.status}`);
+                console.log(`Error: ${xhr.status}, Details: ${xhr.responseText}`);
             }
         };
-        xhr.send(JSON.stringify(basketContent));
+        xhr.send(JSON.stringify(order));
         }
 
     useEffect(() =>{
