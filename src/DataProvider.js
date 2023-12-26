@@ -9,6 +9,24 @@ const DataProvider = ({ children }) => {
         sides: [],
         sauces: []
     });
+    const [streetsInDistricts, setStreetsInDistricts] = useState({
+        ochota: [],
+        wola: [],
+        wesola: [],
+        zoliborz: []
+    });
+    const [streetList, setstreetList] = useState([]);
+
+    const fetchStreets = async () =>{
+        try{
+            const streetResponse = await fetch('https://getstreets-ovvvjoo5mq-uc.a.run.app/');
+            const streetData = await streetResponse.json();
+            setStreetsInDistricts(streetData);
+            setstreetList(streetData.ochota.concat(streetsInDistricts.wola).concat(streetsInDistricts.wesola).concat(streetsInDistricts.zoliborz));
+        } catch(error){
+            console.error('Error fetching street data:', error);
+        }
+    }
 
     const fetchData = async () => {
         try {
@@ -23,10 +41,11 @@ const DataProvider = ({ children }) => {
 
     useEffect(() => {
         fetchData();
+        fetchStreets();
     }, []);
 
     return(
-        <DataContext.Provider value={{menuData}}>
+        <DataContext.Provider value={{menuData, streetsInDistricts, streetList}}>
             {children}
         </DataContext.Provider>
     );
