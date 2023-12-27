@@ -1,5 +1,7 @@
 koszyk:
     - odświeżanie strony powinno wyczyścić zawartość (a tak nie ma)
+    - ceny
+    - mini karta z boku menuBar
 
 Pizza.js:
     - 6:8  warning  'basket' is assigned a value but never used  no-unused-vars

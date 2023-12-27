@@ -8,8 +8,8 @@
   padding: 0;
   text-align: center;
   background-color: var(--navbar);
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center horizontally */
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -87,8 +87,16 @@
   justify-content: center;
 }
 
+.priceDropdown {
+  font-weight: 500;
+  font-size: 1.2rem;
+  background-color: inherit;
+  border-style: dotted ;
+}
+
 .itemInfo {
   font-weight: 500;
+  margin: 0 50px 0 50px;
 }
 
 .itemButton {

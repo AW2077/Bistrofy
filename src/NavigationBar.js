@@ -13,8 +13,8 @@ const NavigationBar = ({ updateContent }) => {
           <li className="logo"><a id="logo" onClick={() => updateContent(<SearchBar/>)}><img id='pizza-icon' src="pizza.png" alt='company logo'></img>Pizzapol</a></li>
             <div className="header-right">
             <li><a onClick={() => updateContent(<Menu/>)}>Menu</a></li>
-            <li><a onClick={() => updateContent(<TrackOrder/>)}>Track your order</a></li>
-            <li><a onClick={() => updateContent(<Contact/>)}>Contact</a></li>
+            <li><a onClick={() => updateContent(<TrackOrder/>)}>Śledź zamówienie</a></li>
+            <li><a onClick={() => updateContent(<Contact/>)}>Kontakt</a></li>
             <li><a onClick={() => updateContent(<Basket/>)}><img id='basket-icon' src="basket.png" alt='basket icon'></img></a></li>
           </div>
         </ul>
