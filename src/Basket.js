@@ -3,10 +3,9 @@ import React, { useState, useEffect } from 'react';
 const Basket = () =>{
     const [basketData, setBasketData] = useState([]);
 
-    const placeOrder = () =>{
-
+    const placeOrder = () => {
         const basketContent = JSON.parse(localStorage.getItem('basket'));
-        if(basketContent.length === 0){
+        if (!basketContent || basketContent.length === 0) {
             alert('Your basket is empty!');
             return;
         }
@@ -33,55 +32,62 @@ const Basket = () =>{
             }
         };
         xhr.send(JSON.stringify(order));
-        }
+        };
+    
+    const clearBasket = () => {
+        localStorage.removeItem('basket');
+        setBasketData([]);
+    };
 
-    useEffect(() =>{
+    const decreaseQuantity = (index) => {
+        const updatedBasket = [...basketData];
+        if (updatedBasket[index].quantity > 1) {
+            updatedBasket[index].quantity -= 1;
+            setBasketData(updatedBasket);
+            localStorage.setItem('basket', JSON.stringify(updatedBasket));
+        } else {
+            updatedBasket.splice(index, 1);
+            setBasketData(updatedBasket);
+            localStorage.setItem('basket', JSON.stringify(updatedBasket));
+        }
+    };
+
+    useEffect(() => {
         const storedBasket = JSON.parse(localStorage.getItem('basket'));
+        if (storedBasket) {
             setBasketData(storedBasket);
+        }
     }, []);
 
-    if(!basketData){
-        return(
-            <div>
-            <h2>Your Basket</h2>
-            <ul>
-                 Your basket is empty!
-                
-            </ul>
-            <br></br>
-            <button onClick={() => placeOrder()} >Place order</button>
-            </div>
-        );
-    }
-
-    if(basketData.length === 0){
-        return(
-            <div>
-            <h2>Your Basket</h2>
-            <ul>
-                 Your basket is empty!
-                
-            </ul>
-            <br></br>
-            <button onClick={() => placeOrder()} >Place order</button>
-            </div>
-        );
-    } else {
-
-        
-        return(
+    return (
         <div>
-        <h2>Your Basket</h2>
-        <ul>
-             {basketData.map((pizza, index) =>(
-                 <li key={index}>{pizza.quantity}x {pizza.name}</li>
-                 ))} 
-            
-        </ul>
-        <br></br>
-        <button onClick={() => placeOrder()} >Place order</button>
+            <h2>Your Basket</h2>
+            {basketData && basketData.length > 0 ? (
+                <div>
+                    <ul>
+                        {basketData.map((item, index) => (
+                            <li key={index}>
+                                {item.quantity}x {item.name} {item.size} {item.price} zł
+                                <button onClick={() => decreaseQuantity(index)}>-</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <br />
+                    <button onClick={() => placeOrder()}>Place order</button>
+                    <br />
+                    <button onClick={() => clearBasket()}><span className="material-symbols-outlined">delete</span></button>
+                </div>
+            ) : (
+                <div>
+                    <ul>
+                        <li>Your basket is empty!</li>
+                    </ul>
+                    <br />
+                    <button onClick={() => placeOrder()}>Place order</button>
+                </div>
+            )}
         </div>
     );
-}
-}
+};
+
 export default Basket;
