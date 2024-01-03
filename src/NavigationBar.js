@@ -8,7 +8,7 @@ import Contact from './Contact';
 
 const NavigationBar = ({ updateContent }) => {
   return (
-    <div className="navbar">
+    <div className="navbar fixed-navbar">
         <ul>
           <li className="logo"><a id="logo" onClick={() => updateContent(<SearchBar/>)}><img id='pizza-icon' src="pizza.png" alt='company logo'></img>Pizzapol</a></li>
             <div className="header-right">

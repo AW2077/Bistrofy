@@ -43,3 +43,12 @@
   font-size: 24px;
   white-space:nowrap;
 }
+
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Add any other styles needed for the fixed navbar */
+}

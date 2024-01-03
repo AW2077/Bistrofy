@@ -134,6 +134,7 @@ h4 {font-size: 1.777rem; /* 28.48px */}
 
 main {
   padding-bottom: 50px;
+  margin-top: 91px;
 }
 
 li a:not(#pizza-icon):hover {

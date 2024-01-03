@@ -27,6 +27,9 @@
   margin: 0;
   background-color: var(--navbar);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.404);
+  position: fixed;
+  width: 100%; /* To make it span the entire width */
+  z-index: 1000; /* Adjust z-index as needed */
 }
 
 .item {
@@ -50,6 +53,7 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 50px
 }
 
 .imageWrapper {
