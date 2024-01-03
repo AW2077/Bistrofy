@@ -1,7 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useMemo } from 'react';
 import './Menu.css';
 import { DataContext } from '../DataProvider';
 import useBasket from './useBasket';
+import _ from 'lodash';
 
 const MenuItem = ({ category }) => {
   const { menuData } = useContext(DataContext);
@@ -11,7 +12,6 @@ const MenuItem = ({ category }) => {
   const [selectedPrices, setSelectedPrices] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
   const [isSizeSelected, setIsSizeSelected] = useState(false);
-  const [visibleItems, setVisibleItems] = useState([]);
 
   const handlePriceChange = (e, itemId, hasPizzaPrice) => {
     const { value } = e.target;
@@ -72,11 +72,39 @@ const MenuItem = ({ category }) => {
       localStorage.removeItem('selectedSizes');
     };
 
-    window.addEventListener('beforeunload', clearDataOnRefresh);
+    const debouncedClearData = _.debounce(clearDataOnRefresh, 1000);
+
+    window.addEventListener('beforeunload', debouncedClearData);
 
     return () => {
-      window.removeEventListener('beforeunload', clearDataOnRefresh);
+      window.removeEventListener('beforeunload', debouncedClearData);
     };
+  }, []);
+
+  const renderIngredients = useMemo(() => {
+    if (!filteredData) return null;
+
+    return (ingredients) => {
+      if (!ingredients) return null;
+
+      return ingredients.map((ingredient, index) => (
+        <span key={ingredient.id}>
+          {ingredient.name}
+          {index !== ingredients.length - 1 && ', '}
+        </span>
+      ));
+    };
+  }, [filteredData]);
+
+  const renderItemImage = useMemo(() => {
+    return (imgSrc) => (
+      <img
+        src={imgSrc}
+        alt={imgSrc.name}
+        loading='lazy'
+        className='itemImage'
+      />
+    );
   }, []);
 
   return (
@@ -85,12 +113,7 @@ const MenuItem = ({ category }) => {
         filteredData.map((item) => (
           <div className='item' key={item.id}>
             <div className='imageWrapper'>
-              <img
-                src={item.img}
-                alt={item.name}
-                loading='lazy'
-                className='itemImage'
-              />
+            {renderItemImage(item.img)}
             </div>
             <div className='contentWrapper'>
               <div className='itemHead'>
@@ -121,12 +144,7 @@ const MenuItem = ({ category }) => {
               </div>
               {item.ingredients && (
                 <div className='itemInfo'>
-                  {item.ingredients.map((ingredient, index) => (
-                    <span key={ingredient.id}>
-                      {ingredient.name}
-                      {index !== item.ingredients.length - 1 && ', '}
-                    </span>
-                  ))}
+                  {renderIngredients(item.ingredients)}
                 </div>
               )}
               <div className='itemButton'>
@@ -135,7 +153,7 @@ const MenuItem = ({ category }) => {
                   onClick={() => {
                     const hasPizzaPrice = item.pizzaPrice !== undefined;
                     if (hasPizzaPrice && !isSizeSelected) {
-                      alert('Please select a size.');
+                      alert('Proszę wybrać najpierw rozmiar.');
                       return;
                     }
                     addToBasket(item, selectedPrices[item.id], selectedSizes[item.id]);
