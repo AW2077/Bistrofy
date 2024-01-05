@@ -77,6 +77,20 @@
 
 }
 
+/* Ripple effect */
+.ripple {
+  background-position: center;
+  transition: background 0.4s;
+}
+.ripple:hover {
+  background: #f1f1f1 radial-gradient(circle, transparent 1%, #f1f1f1 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #d8e2b8;
+  background-size: 100%;
+  transition: background 0s;
+}
+
 body {
   background-color: var(--background);
   color: var(--text);
@@ -87,7 +101,7 @@ body {
 
 #root {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 91px);
 }
 
 footer {

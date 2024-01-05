@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './Basket.css'
+import Adress from './Adress';
 
 const Basket = () =>{
     const [basketData, setBasketData] = useState([]);
@@ -59,31 +61,44 @@ const Basket = () =>{
         }
     }, []);
 
+    const calculateTotalPrice = (basketData) => {
+        let totalPrice = 0;
+    
+        for (const item of basketData) {
+          totalPrice += item.price * item.quantity;
+        }
+    
+        return totalPrice.toFixed(2);
+      };
+    
+      const total = calculateTotalPrice(basketData);
+
     return (
         <div>
-            <h2>Your Basket</h2>
             {basketData && basketData.length > 0 ? (
-                <div>
+                <div className='fullBasket'>
+                    <h4 className='basketTitle'>
+                    <span>Twoje zamówienie</span><span className='price'>{total} zł</span>
+                    </h4><div className='basketText'>
                     <ul>
                         {basketData.map((item, index) => (
                             <li key={index}>
-                                {item.quantity}x {item.name} {item.size} {item.price} zł
-                                <button onClick={() => decreaseQuantity(index)}>-</button>
+                                <span>
+                                {item.quantity}x<span className='itemName'> {item.name} {item.size}</span> <span className='price'>{item.price} zł
+                                <button className="minus" onClick={() => decreaseQuantity(index)}><span className="x material-symbols-outlined ripple">remove</span></button></span></span>
                             </li>
                         ))}
-                    </ul>
-                    <br />
-                    <button onClick={() => placeOrder()}>Place order</button>
-                    <br />
-                    <button onClick={() => clearBasket()}><span className="material-symbols-outlined">delete</span></button>
+                    </ul></div>
+                    <div className='trash'>WYCZYŚĆ KOSZYK
+                    <button className='btn tr' onClick={() => clearBasket()}><span className=" trash material-symbols-outlined">delete</span></button></div>
+                    <Adress />
+                    <button className='btn pl ripple basketText' onClick={() => placeOrder()}>Zamów!</button>
                 </div>
             ) : (
-                <div>
-                    <ul>
-                        <li>Your basket is empty!</li>
-                    </ul>
-                    <br />
-                    <button onClick={() => placeOrder()}>Place order</button>
+                <div className='emptyBasket'>
+                    <h4>Twój koszyk jest pusty</h4>
+                    <span className='textEmpty'>Ale nie martw się - nasze smakowite pizze czekają, by do niego trafić! Przejrzyj nasze menu,
+                    dodaj ulubione produkty i zamów online, ciesząc się wygodą i pysznym jedzeniem w zasięgu ręki.</span>
                 </div>
             )}
         </div>
