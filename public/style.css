@@ -120,7 +120,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   border: 0;
 }
 
-/* button {
+.bt {
   border:none;
   display:inline-block;
   padding:8px 16px;
@@ -128,13 +128,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   overflow:hidden;
   text-decoration:none;
   color: var(--text);
-  background-color: var(--primary);
+  background-color: var(--navbar);;
   text-align:center;
   cursor:pointer;
   white-space:nowrap;
   transition-duration: 0.4s;}
 
-button:hover {color:var(--text)!important;background-color:var(--secondary)!important} */
+.bt:hover {color:var(--text)!important;background-color:var(--secondary)!important}
 
 h3 {font-size: 2.369rem; /* 37.92px */}
 h4 {font-size: 1.777rem; /* 28.48px */}

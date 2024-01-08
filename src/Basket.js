@@ -1,9 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Basket.css'
 import Adress from './Adress';
+import { DataContext } from './DataProvider';
+import { generateTimeList } from './Contact';
 
 const Basket = () =>{
     const [basketData, setBasketData] = useState([]);
+
+    const {timeList} = useContext(DataContext);
+    const timeListResult = generateTimeList(timeList);
+    const [currentTime, setCurrentTime] = useState(new Date());
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentTime(new Date());
+      }, 1000);
+      return () => clearInterval(interval);
+    }, []);
+
+    const isOpenNow = (district, timeList, currentDateTime) => {
+        const currentTime = currentDateTime.getHours() * 60 + currentDateTime.getMinutes();
+      
+        const districtInfo = timeList.find(item => item.district === district);
+      
+        if (districtInfo) {
+          const startTime = districtInfo.startTime.split(':');
+          const endTime = districtInfo.endTime.split(':');
+      
+          const startMinutes = parseInt(startTime[0]) * 60 + parseInt(startTime[1]);
+          const endMinutes = parseInt(endTime[0]) * 60 + parseInt(endTime[1]);
+      
+          return currentTime >= startMinutes && currentTime <= endMinutes;
+        }
+      
+        return false;
+      };
+      
+      // Usage example:
+      const isOpen = isOpenNow('Wola', timeListResult, currentTime); //na razie hardcode DO ZMIANY
+      console.log('Is Wola open now?', isOpen);
 
     const placeOrder = () => {
         const basketContent = JSON.parse(localStorage.getItem('basket'));
@@ -92,7 +127,7 @@ const Basket = () =>{
                     <div className='trash'>WYCZYŚĆ KOSZYK
                     <button className='btn tr' onClick={() => clearBasket()}><span className=" trash material-symbols-outlined">delete</span></button></div>
                     <Adress />
-                    <button className='btn pl ripple basketText' onClick={() => placeOrder()}>Zamów!</button>
+                    <button className='btn bt pl ripple basketText' onClick={() => placeOrder()}>Zamów!</button>
                 </div>
             ) : (
                 <div className='emptyBasket'>

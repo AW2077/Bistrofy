@@ -17,6 +17,8 @@ const DataProvider = ({ children }) => {
     });
     const [streetList, setstreetList] = useState([]);
 
+    const [timeList, setTimeList] = useState([]);
+
     const fetchStreets = async () =>{
         try{
             const streetResponse = await fetch('https://getstreets-ovvvjoo5mq-uc.a.run.app/');
@@ -39,13 +41,25 @@ const DataProvider = ({ children }) => {
         }
     };
 
+    const fetchTime = async () => {
+        try {
+            const timeResponse = await fetch('https://fetchtime-ovvvjoo5mq-uc.a.run.app/');
+            const timeList = await timeResponse.json();
+
+            setTimeList(timeList);
+        } catch (error) {
+            console.error('Error fetching menu data:', error);
+        }
+    };
+
     useEffect(() => {
         fetchData();
         fetchStreets();
+        fetchTime();
     }, []);
 
     return(
-        <DataContext.Provider value={{menuData, streetsInDistricts, streetList}}>
+        <DataContext.Provider value={{menuData, streetsInDistricts, streetList, timeList}}>
             {children}
         </DataContext.Provider>
     );

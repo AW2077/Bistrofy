@@ -1,18 +1,18 @@
 .emptyBasket {
-    margin-top: 15vh;
-    margin-bottom: 15vh;
-    max-width: 36rem;
-    margin-right: auto;
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-top: 15vh;
+  margin-bottom: 15vh;
+  max-width: 36rem;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   text-align: center;
 }
 
 .textEmpty {
-    padding: 10px;
+  padding: 10px;
 }
 
 .fullBasket {
@@ -22,7 +22,7 @@
   flex-direction: column;
   padding: 15px;
   list-style: none;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .basketTitle {
@@ -41,8 +41,6 @@
   border-bottom: 2px solid #f4efe8;
   position: relative;
   margin-bottom: 4px;
-  
-  
 }
 
 .price {
@@ -80,19 +78,5 @@
 
 .pl {
   align-self: center;
-  background-color: var(--navbar);
   justify-content: center;
-  border:none;
-  display:inline-block;
-  padding:8px 16px;
-  vertical-align:middle;
-  overflow:hidden;
-  text-decoration:none;
-  color: var(--text);
-  text-align:center;
-  cursor:pointer;
-  white-space:nowrap;
-  transition-duration: 0.4s;
 }
-
-.pl:hover {color:var(--text)!important;background-color:var(--secondary)!important} 
