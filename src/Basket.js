@@ -6,10 +6,23 @@ import { generateTimeList } from './Contact';
 
 const Basket = () =>{
     const [basketData, setBasketData] = useState([]);
-
     const {timeList} = useContext(DataContext);
     const timeListResult = generateTimeList(timeList);
     const [currentTime, setCurrentTime] = useState(new Date());
+
+    const checkDistrict = () => {
+        const storedAddress = localStorage.getItem('address');
+        if (storedAddress) {
+          try {
+            const parsedAddress = JSON.parse(storedAddress);
+            return parsedAddress.district || null;
+          } catch (error) {
+            console.error('Error parsing address from local storage:', error);
+            return null;
+          }
+        }
+        return null;
+      };
   
     useEffect(() => {
       const interval = setInterval(() => {
@@ -20,25 +33,21 @@ const Basket = () =>{
 
     const isOpenNow = (district, timeList, currentDateTime) => {
         const currentTime = currentDateTime.getHours() * 60 + currentDateTime.getMinutes();
-      
         const districtInfo = timeList.find(item => item.district === district);
       
         if (districtInfo) {
           const startTime = districtInfo.startTime.split(':');
           const endTime = districtInfo.endTime.split(':');
-      
           const startMinutes = parseInt(startTime[0]) * 60 + parseInt(startTime[1]);
           const endMinutes = parseInt(endTime[0]) * 60 + parseInt(endTime[1]);
-      
           return currentTime >= startMinutes && currentTime <= endMinutes;
         }
-      
         return false;
       };
       
-      // Usage example:
-      const isOpen = isOpenNow('Wola', timeListResult, currentTime); //na razie hardcode DO ZMIANY
-      console.log('Is Wola open now?', isOpen);
+      const isOpen = isOpenNow(checkDistrict(), timeListResult, currentTime);
+    //   const isOpen = true;
+      console.log(checkDistrict(), isOpen);
 
     const placeOrder = () => {
         const basketContent = JSON.parse(localStorage.getItem('basket'));
@@ -105,8 +114,7 @@ const Basket = () =>{
     
         return totalPrice.toFixed(2);
       };
-    
-      const total = calculateTotalPrice(basketData);
+    const total = calculateTotalPrice(basketData);
 
     return (
         <div>
@@ -127,7 +135,14 @@ const Basket = () =>{
                     <div className='trash'>WYCZYŚĆ KOSZYK
                     <button className='btn tr' onClick={() => clearBasket()}><span className=" trash material-symbols-outlined">delete</span></button></div>
                     <Adress />
-                    <button className='btn bt pl ripple basketText' onClick={() => placeOrder()}>Zamów!</button>
+                    {!isOpen && (
+                        <p className="pl error">Twój wybrany lokal jest teraz zamknięty!</p>
+                    )}
+                    <button
+                    className={`btn bt pl ripple basketText ${!isOpen ? 'disabled' : ''}`} 
+                    onClick={() => isOpen && placeOrder()}
+                    disabled={!isOpen}>
+                        Zamów!</button>
                 </div>
             ) : (
                 <div className='emptyBasket'>

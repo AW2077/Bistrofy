@@ -76,16 +76,20 @@
  --color-surface-600:  #8b8b8b;
 
 }
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed!important;
+}
 
 /* Ripple effect */
-.ripple {
+.ripple:not(.disabled) {
   background-position: center;
   transition: background 0.4s;
 }
-.ripple:hover {
+.ripple:not(.disabled):hover {
   background: #f1f1f1 radial-gradient(circle, transparent 1%, #f1f1f1 1%) center/15000%;
 }
-.ripple:active {
+.ripple:not(.disabled):active {
   background-color: #d8e2b8;
   background-size: 100%;
   transition: background 0s;
@@ -98,6 +102,7 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
 
 #root {
   position: relative;

@@ -16,8 +16,8 @@ const DataProvider = ({ children }) => {
         zoliborz: []
     });
     const [streetList, setstreetList] = useState([]);
-
     const [timeList, setTimeList] = useState([]);
+    const [orderList, setOrderList] = useState([]);
 
     const fetchStreets = async () =>{
         try{
@@ -28,7 +28,7 @@ const DataProvider = ({ children }) => {
         } catch(error){
             console.error('Error fetching street data:', error);
         }
-    }
+    };
 
     const fetchData = async () => {
         try {
@@ -52,14 +52,26 @@ const DataProvider = ({ children }) => {
         }
     };
 
+    const fetchOrderID = async () => {
+        try {
+            const orderResponse = await fetch('https://fetchorderid-ovvvjoo5mq-uc.a.run.app/');
+            const orderList = await orderResponse.json();
+
+            setOrderList(orderList);
+        } catch (error) {
+            console.error('Error fetching order data:', error);
+        }
+    };
+
     useEffect(() => {
         fetchData();
         fetchStreets();
         fetchTime();
+        fetchOrderID();
     }, []);
 
     return(
-        <DataContext.Provider value={{menuData, streetsInDistricts, streetList, timeList}}>
+        <DataContext.Provider value={{menuData, streetsInDistricts, streetList, timeList, orderList}}>
             {children}
         </DataContext.Provider>
     );

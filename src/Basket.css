@@ -80,3 +80,8 @@
   align-self: center;
   justify-content: center;
 }
+
+.error {
+  padding: 6px;
+  color: var(--clr-Danger-a0)
+}
