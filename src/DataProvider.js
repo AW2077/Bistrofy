@@ -3,6 +3,11 @@ import React, { createContext, useState, useEffect } from "react";
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
+
+    const [adress, setAddress] = useState({
+        district: '',
+        street: 'Przejdź na stronę główną'
+    });
     const [menuData, setMenuData] = useState({
         pizza: [],
         drinks: [],
@@ -24,7 +29,7 @@ const DataProvider = ({ children }) => {
             const streetResponse = await fetch('https://getstreets-ovvvjoo5mq-uc.a.run.app/');
             const streetData = await streetResponse.json();
             setStreetsInDistricts(streetData);
-            setstreetList(streetData.ochota.concat(streetsInDistricts.wola).concat(streetsInDistricts.wesola).concat(streetsInDistricts.zoliborz));
+            setstreetList(streetData.ochota.concat(streetData.wola).concat(streetData.wesola).concat(streetData .zoliborz));
         } catch(error){
             console.error('Error fetching street data:', error);
         }
@@ -68,10 +73,16 @@ const DataProvider = ({ children }) => {
         fetchStreets();
         fetchTime();
         fetchOrderID();
+
+        const addressString = localStorage.getItem('address');
+        if(addressString ==! null){
+            const address = JSON.parse(addressString);
+            setAddress(address);
+        }
     }, []);
 
     return(
-        <DataContext.Provider value={{menuData, streetsInDistricts, streetList, timeList, orderList}}>
+        <DataContext.Provider value={{adress, menuData, streetsInDistricts, streetList, timeList, orderList}}>
             {children}
         </DataContext.Provider>
     );

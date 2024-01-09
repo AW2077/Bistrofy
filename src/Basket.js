@@ -50,18 +50,32 @@ const Basket = () =>{
       console.log(checkDistrict(), isOpen);
 
     const placeOrder = () => {
-        const basketContent = JSON.parse(localStorage.getItem('basket'));
-        if (!basketContent || basketContent.length === 0) {
-            alert('Your basket is empty!');
+
+        if(document.getElementById('number').value.length == 0
+        || document.getElementById('phone').value.length == 0){
+            alert('Proszę uzupełnić puste pola');
+        
             return;
         }
+         
+        var district = document.getElementById('district-address').value;
+        var street = document.getElementById('street-address').value;
+        var number = document.getElementById('number').value;
+        var phone = document.getElementById('phone').value;
+
+        const basketContent = JSON.parse(localStorage.getItem('basket'));
         console.log(basketContent === true);
 
         const order = {
             content: basketContent,
-            address: "Grójecka 420",
-            district: "Ochota"
-        }
+            address: {
+                district: district,
+                street: street,
+                number: number,
+                phone: phone
+            }}
+
+        
 
         const xhr = new XMLHttpRequest();
         xhr.open("POST", " https://placeorder-ovvvjoo5mq-uc.a.run.app");
