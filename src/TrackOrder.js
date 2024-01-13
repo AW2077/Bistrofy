@@ -33,7 +33,7 @@ const TrackOrder = () =>{
         <h4 className='basketTitle'>
           <span>Sprawdź status swojego zamówienia!</span>
         </h4><div className='basketText'>
-          <form><input required type="text" id="orderID" name="orderID" enterKeyHint="done" placeholder='Podaj ID zamówienia'></input></form>
+          <form className='form'><input className='input' required type="text" id="orderID" name="orderID" enterKeyHint="done" placeholder='Podaj ID zamówienia'></input></form>
           <button className='btn bt pl ripple basketText' onClick={() => trackOrder()}>Sprawdź</button>
       </div>
       </div>

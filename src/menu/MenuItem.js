@@ -127,11 +127,11 @@ const MenuItem = ({ category }) => {
                         onBlur={(e) => handlePriceChange(e, item.id)}
                         value={selectedPrices[item.id] || ''}
                       >
-                        <option key="default" value="">
+                        <option className='option' key="default" value="">
                           Wybierz rozmiar
                         </option>
                         {item.pizzaPrice.map((price, index) => (
-                          <option key={index} value={price}>
+                          <option className='option' key={index} value={price}>
                             rozmiar {sizes[index]} - {price} zł
                           </option>
                         ))}

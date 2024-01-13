@@ -1,6 +1,7 @@
 .search {
     text-align: center;
     padding: 20px;
+    width: 100%;
 }
 
 .search form {
@@ -8,12 +9,56 @@
 }
 
 .search input{
+    vertical-align: top;
     height: 38px;
-    width: 35%;
-    border-radius: 25px;
+    width: 70%;
+    border-radius: 25px 0px 0px 25px;
+    border: 2px solid #f4efe8;
     padding-left: 16px;
     font-size: 16px;
-    background-image: url('./near.png');
-    background-position:98%;
-    background-repeat: no-repeat
+    border-right: none;
+}
+
+.dropdown {
+    text-align: center;
+    width: 73%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #f4efe8;
+    margin-top: 10px;
+}
+
+.dropdown-row {
+    text-align: left;
+    padding: 4px 0 4px 8px;
+    border: 1px solid #f4efe8;
+    cursor: pointer;
+}
+
+.container {
+    width: 60%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchBtn {
+    vertical-align: top;
+    height: 44px;
+    color: #000 !important;
+    border-radius: 0px 25px 25px 0px;
+    white-space: normal;
+    text-align: center;
+    outline: none !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    background-color: var(--background);
+    border: 2px solid #f4efe8;
+    border-left: none;
+
+}
+
+.search input:focus {
+    outline: none;
+    box-shadow: none; 
 }

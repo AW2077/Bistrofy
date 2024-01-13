@@ -9,6 +9,7 @@ const Basket = () =>{
     const {timeList} = useContext(DataContext);
     const timeListResult = generateTimeList(timeList);
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [phoneError, setPhoneError] = useState('');
 
     const checkDistrict = () => {
         const storedAddress = localStorage.getItem('address');
@@ -47,7 +48,6 @@ const Basket = () =>{
       
       const isOpen = isOpenNow(checkDistrict(), timeListResult, currentTime);
     //   const isOpen = true;
-      console.log(checkDistrict(), isOpen);
 
     const placeOrder = () => {
 
@@ -130,6 +130,25 @@ const Basket = () =>{
       };
     const total = calculateTotalPrice(basketData);
 
+    const isFormValid = () => {
+        const streetElement = document.getElementById('street-address');
+        const numberElement = document.getElementById('number');
+        const phoneElement = document.getElementById('phone');
+      
+        if (!streetElement || !numberElement || !phoneElement) {
+          return null;
+        }
+      
+        const street = streetElement.value;
+        const number = numberElement.value;
+        const phone = phoneElement.value;
+      
+        if (street.length === 0 || number.length === 0 || phone.length === 0 || phoneError) {
+          return null;
+        }
+        return true;
+      };
+
     return (
         <div>
             {basketData && basketData.length > 0 ? (
@@ -148,14 +167,19 @@ const Basket = () =>{
                     </ul></div>
                     <div className='trash'>WYCZYŚĆ KOSZYK
                     <button className='btn tr' onClick={() => clearBasket()}><span className=" trash material-symbols-outlined">delete</span></button></div>
-                    <Adress />
-                    {!isOpen && (
+                    <Adress phoneError={phoneError} setPhoneError={setPhoneError}/>
+                    {(!isOpen ? (
                         <p className="pl error">Twój wybrany lokal jest teraz zamknięty!</p>
-                    )}
+                        ) :
+                    (isFormValid() === null ? (
+                        <p className="pl error">Najpierw poprawnie uzupełnij wszystkie pola.</p>
+                        ) : 
+                        null)
+                        )}
                     <button
-                    className={`btn bt pl ripple basketText ${!isOpen ? 'disabled' : ''}`} 
-                    onClick={() => isOpen && placeOrder()}
-                    disabled={!isOpen}>
+                    className={`btn bt pl ripple basketText ${!isOpen || isFormValid() === null ? 'disabled' : ''}`} 
+                    onClick={() => isOpen && isFormValid() && placeOrder()}
+                    disabled={!isOpen || isFormValid() === null}>
                         Zamów!</button>
                 </div>
             ) : (

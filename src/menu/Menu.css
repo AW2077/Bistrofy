@@ -96,6 +96,11 @@
   font-size: 1.2rem;
   background-color: inherit;
   border-style: dotted ;
+  cursor: pointer;
+}
+
+.option {
+  cursor: pointer;
 }
 
 .itemInfo {
@@ -107,6 +112,7 @@
   position: absolute;
   height: 40%;
   bottom: 0;
+  cursor: pointer;
 }
 
 .btnYes {
@@ -131,4 +137,5 @@
   margin: 4px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
