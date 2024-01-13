@@ -47,7 +47,7 @@ const Basket = () =>{
       };
       
       const isOpen = isOpenNow(checkDistrict(), timeListResult, currentTime);
-    //   const isOpen = true;
+      // const isOpen = true;
 
     const placeOrder = () => {
 
@@ -86,10 +86,13 @@ const Basket = () =>{
         
         xhr.onload = () => {
             if (xhr.readyState === 4 && xhr.status === 201) {
-                console.log(JSON.parse(xhr.responseText));
-            } else {
-                console.log(`Error: ${xhr.status}, Details: ${xhr.responseText}`);
-            }
+              console.log(JSON.parse(xhr.responseText));
+              window.alert('Twoje zamówienie zostało pomyślnie złożone!');
+              clearBasket();
+          } else {
+              console.log(`Error: ${xhr.status}, Details: ${xhr.responseText}`);
+              window.alert('Wystąpił błąd przy składaniu zamówienia. Proszę spróbować ponownie.');
+          }
         };
         xhr.send(JSON.stringify(order));
         };
