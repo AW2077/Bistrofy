@@ -89,6 +89,7 @@ const Basket = () =>{
               console.log(JSON.parse(xhr.responseText));
               window.alert('Twoje zamówienie zostało pomyślnie złożone!');
               clearBasket();
+              window.location.reload()
           } else {
               console.log(`Error: ${xhr.status}, Details: ${xhr.responseText}`);
               window.alert('Wystąpił błąd przy składaniu zamówienia. Proszę spróbować ponownie.');

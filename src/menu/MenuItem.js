@@ -147,6 +147,11 @@ const MenuItem = ({ category }) => {
                   {renderIngredients(item.ingredients)}
                 </div>
               )}
+              {item.class && (
+                <div className='itemClass'>
+                  {item.class}
+                </div>
+              )}
               <div className='itemButton'>
                 <button
                   className={'btnYes ripple'}

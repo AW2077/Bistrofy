@@ -6,9 +6,11 @@ import "./TrackOrder.css"
 export const generateTimeList = (timeList) => {
   return Object.keys(timeList).map((districtKey, index) => {
     const districtItem = timeList[districtKey];
-    let info = districtItem.Info;
+    let info;
 
-    if (!info) {
+    if (districtItem.Info) {
+      info = districtItem.Info;
+    } else {
       const keys = Object.keys(districtItem);
       if (keys.length > 0) {
         const firstItemId = keys[0];
@@ -17,17 +19,15 @@ export const generateTimeList = (timeList) => {
     }
 
     if (info) {
-      const formatTime = (seconds) => {
-        const date = new Date(seconds * 1000);
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
+      const formatTime = (time) => {
+        const [hours, minutes] = time.split(':');
         return `${hours}:${minutes}`;
       };
 
       return {
         district: info.district,
-        startTime: formatTime(info.start._seconds),
-        endTime: formatTime(info.close._seconds),
+        startTime: formatTime(info.start),
+        endTime: formatTime(info.close),
       };
     }
     return null;
