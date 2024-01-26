@@ -1,5 +1,6 @@
 # Pizzapol - a pizzeria website
 This project is a dynamic and interactive website for a fictional pizzeria. It allows users to explore the menu, place orders and more.
+
 Live site: https://pizzapol-customer.web.app **Important note**: If some contents are not loading, it means the Firebase side of the project has been disconnected. See the video below for the whole picture.
 
 ## Technologies Used
